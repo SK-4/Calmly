@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 firebaseConfig = {
   "apiKey": os.environ.get("FIREBASE_API_KEY"),
   "authDomain": os.environ.get("FIREBASE_AUTH_DOMAIN"),
@@ -29,14 +30,24 @@ auth = firebase.auth()
 #Database
 db = firebase.database()
 storage = firebase.storage()
+st.write('''<p style="font-size:50px; color:white;">🐧Calmly </p>''',
+unsafe_allow_html=True)
+st.write('''<p style="font-size:50px; color:white;">This Is For Curious Minds</p>''',
+unsafe_allow_html=True)
+
+st.write('''<p style="font-size:26px; color:white;">It's 2023: Still doubting yourself?</p>''',
+unsafe_allow_html=True)
+
+st.write('''<p style="font-size:26px; color:white;">Measure & discover your mental strengths today </p>''',
+unsafe_allow_html=True)
 
 st.sidebar.title("OUR COMMUNITY")
 menu = ['Login', 'Sign up']
 #Authentication
 choice = st.sidebar.selectbox('Login/Signup',menu,key=menu)
 
-email = st.sidebar.text_input('enter your email address')
-password = st.sidebar.text_input('enter you password',type = 'password')
+email = st.sidebar.text_input('Email')
+password = st.sidebar.text_input('Password',type = 'password')
 
 # Sign up Block
 if choice == 'Sign up':
@@ -64,7 +75,6 @@ if choice == 'Login':
         if login:
             user = auth.sign_in_with_email_and_password(email,password)
             user_type = db.child('users').child(user['localId']).child('user_type').get().val()
-            print(user_type)
             if user_type=='user':
                 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
                 bio = st.radio('Jump to',['Home','Dashboard', 'Settings'])
@@ -106,13 +116,13 @@ if choice == 'Login':
                         # print(st.session_state.sentiment_dict['compound'])
                         if st.session_state.sentiment_count>2:
                             if sentiment_dict['compound']>=0.05:
-                            # if (st.session_state.positive_risk_percentage/5)*100 >=60:
-                                st.write(f"Low risk of mental health issues. Keep up the good work!!!{(st.session_state.positive_risk_percentage/5)*100}")
+                            
+                                st.write(f"The Current Patient is Doing Great !!!{(st.session_state.positive_risk_percentage/5)*100}")
                             elif sentiment_dict['compound']<=-0.05:
-                            # elif (st.session_state.negative_risk_percentage/5)*100 >=60:
-                                st.write(f"High risk of mental health issues. Please seek professional help immediately.{(st.session_state.negative_risk_percentage/5)*100}")
+                            
+                                st.write(f"He would Need Help {(st.session_state.negative_risk_percentage/5)*100}")
                             else:
-                                st.write(f"Moderate risk of mental health issues. Please seek help if necessary.{(st.session_state.neutral_risk_percentage/5)*100}")
+                                st.write(f"Moderate risk of mental health issues.{(st.session_state.neutral_risk_percentage/5)*100}")
 
                     def generate_answer():
                         tokenizer, model = get_models()
@@ -159,3 +169,27 @@ if choice == 'Login':
                     #     """, unsafe_allow_html=True)
     except:
         st.sidebar.error('incorrect email and password !')
+
+# st.markdown(
+#     f"""
+#     <style>
+#     .reportview-container {{
+#         background-color: #f6efe6
+#     }}
+#    .sidebar .sidebar-content {{
+#         background-color: #4e4e4e;
+#         color: #ffffff;
+#     }}
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
+
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)

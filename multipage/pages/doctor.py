@@ -9,6 +9,7 @@ from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import os 
 from dotenv import load_dotenv
+import user
 
 load_dotenv()
 
@@ -31,7 +32,18 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 # Get a reference to the Firebase Authentication and Realtime Database services
 auth = firebase.auth()
 db = firebase.database()
+st.set_page_config(layout="centered", page_icon="🏥", page_title="Doctor's Dashboard")
+#Doctors Homepage !!!
+st.write('''<p style="font-size:50px; color:white;">🐧 Calmly</p>''',
+unsafe_allow_html=True)
+st.write('''<p style="font-size:50px; color:white;">Track your Patients brain health </p>''',
+unsafe_allow_html=True)
 
+st.write('''<p style="font-size:26px; color:white;">we’ve developed solid tools via which you can measure your patients mental strength before you.</p>''',
+unsafe_allow_html=True)
+
+st.write('''<p style="font-size:25px; color:white;"> Curious about how this happens?</p>''',
+unsafe_allow_html=True)
 # Sidebar menu
 st.sidebar.title("OUR COMMUNITY")
 menu = ['Login', 'Sign up']
@@ -76,3 +88,12 @@ if choice == 'Login':
                 st.sidebar.error('Invalid email/password or you might switch to user')
         except:
             st.error('Invalid email or password. Please try again.')
+
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)

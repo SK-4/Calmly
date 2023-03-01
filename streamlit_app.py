@@ -5,6 +5,7 @@ from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
+
 if 'count' not in st.session_state or 'list_ans' not in st.session_state or 'sentiment_count' not in st.session_state or 'positive_risk_percentage' not in st.session_state or 'negative_risk_percentage' not in st.session_state or 'neutral_risk_percentage' not in st.session_state or 'flag' not in st.session_state:
     st.session_state['count'] = 0
     st.session_state['list_ans'] = []
