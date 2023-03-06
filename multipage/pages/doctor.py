@@ -32,17 +32,17 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 # Get a reference to the Firebase Authentication and Realtime Database services
 auth = firebase.auth()
 db = firebase.database()
-st.set_page_config(layout="centered", page_icon="🏥", page_title="Doctor's Dashboard")
+# st.set_page_config(layout="centered", page_icon="🏥", page_title="Doctor's Dashboard")
 #Doctors Homepage !!!
-st.write('''<p style="font-size:50px; color:white;">🐧 Calmly</p>''',
+st.write('''<p style="font-size:50px; color:black;">🐧 Calmly</p>''',
 unsafe_allow_html=True)
-st.write('''<p style="font-size:50px; color:white;">Track your Patients brain health </p>''',
-unsafe_allow_html=True)
-
-st.write('''<p style="font-size:26px; color:white;">we’ve developed solid tools via which you can measure your patients mental strength before you.</p>''',
+st.write('''<p style="font-size:50px; color:black;">Track your Patients brain health </p>''',
 unsafe_allow_html=True)
 
-st.write('''<p style="font-size:25px; color:white;"> Curious about how this happens?</p>''',
+st.write('''<p style="font-size:26px; color:black;">we’ve developed solid tools via which you can measure your patients mental strength before you.</p>''',
+unsafe_allow_html=True)
+
+st.write('''<p style="font-size:25px; color:black;"> Curious about how this happens?</p>''',
 unsafe_allow_html=True)
 # Sidebar menu
 st.sidebar.title("OUR COMMUNITY")

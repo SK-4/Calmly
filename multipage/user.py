@@ -1,4 +1,3 @@
-#modules
 import pyrebase #python wrapper of firebase
 import streamlit as st
 from datetime import datetime
@@ -9,9 +8,10 @@ from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import os
 from dotenv import load_dotenv
+import streamlit.components.v1 as components
+
 
 load_dotenv()
-
 
 firebaseConfig = {
   "apiKey": os.environ.get("FIREBASE_API_KEY"),
@@ -30,15 +30,16 @@ auth = firebase.auth()
 #Database
 db = firebase.database()
 storage = firebase.storage()
-st.write('''<p style="font-size:50px; color:white;">🐧Calmly </p>''',
+st.set_page_config(layout="centered", page_icon="🏥", page_title="Calmly")
+st.write('''<p style="font-size:50px; color:black;">🐧Calmly </p>''',
 unsafe_allow_html=True)
-st.write('''<p style="font-size:50px; color:white;">This Is For Curious Minds</p>''',
-unsafe_allow_html=True)
-
-st.write('''<p style="font-size:26px; color:white;">It's 2023: Still doubting yourself?</p>''',
+st.write('''<p style="font-size:50px; color:black;">This Is For Curious Minds</p>''',
 unsafe_allow_html=True)
 
-st.write('''<p style="font-size:26px; color:white;">Measure & discover your mental strengths today </p>''',
+st.write('''<p style="font-size:26px; color:black;">It's 2023: Still doubting yourself?</p>''',
+unsafe_allow_html=True)
+
+st.write('''<p style="font-size:26px; color:black;">Measure & discover your mental strengths today </p>''',
 unsafe_allow_html=True)
 
 st.sidebar.title("OUR COMMUNITY")
@@ -77,9 +78,13 @@ if choice == 'Login':
             user_type = db.child('users').child(user['localId']).child('user_type').get().val()
             if user_type=='user':
                 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-                bio = st.radio('Jump to',['Home','Dashboard', 'Settings'])
+                bio = st.radio('Jump to',['Relax','Dashboard','Home','Settings '])
+                st.experimental_rerun()
+                if bio=='Relax':
+                    st.write("Relax !!!")
+                    components.html('<iframe style="border-radius:20px" src="https://open.spotify.com/embed/playlist/79CdkHFoF0VYvHEzFFXokr?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>', height=400, scrolling=True)
 
-                if bio == 'Home':
+                elif bio == 'Home':
                     if 'count' not in st.session_state or 'list_ans' not in st.session_state or 'sentiment_count' not in st.session_state or 'positive_risk_percentage' not in st.session_state or 'negative_risk_percentage' not in st.session_state or 'neutral_risk_percentage' not in st.session_state or 'flag' not in st.session_state:
                         st.session_state['count'] = 0
                         st.session_state['list_ans'] = []
@@ -89,7 +94,7 @@ if choice == 'Login':
                         st.session_state['neutral_risk_percentage'] = 0
                         st.session_state['flag'] = False
 
-                    @st.cache_resource
+                    @st.cache_data
                     def get_models():
                         # it may be necessary for other frameworks to cache the model
                         # seems pytorch keeps an internal state of the conversation
@@ -167,6 +172,8 @@ if choice == 'Login':
                     # }
                     # </style>
                     #     """, unsafe_allow_html=True)
+
+
     except:
         st.sidebar.error('incorrect email and password !')
 

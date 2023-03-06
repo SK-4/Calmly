@@ -2,7 +2,7 @@ import pdfkit
 import streamlit as st
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-st.set_page_config(layout="centered", page_icon="💰", page_title="Invoice Generator")
+# st.set_page_config(layout="centered", page_icon="💰", page_title="Invoice Generator")
 st.title("💰 Bill Generator")
 
 st.write(
@@ -23,8 +23,8 @@ with st.form("template_form"):
     Patient_address = right.text_input("Patient address", value="")
     Treatment_type = left.selectbox("Treatment type", ["Ayurvedic", "Aleopathic"])
     quantity = right.number_input("Quantity", 1, 10)
-    price_per_unit = st.slider("Price per unit", 1, 100, 60)
-    total = price_per_unit * quantity
+    Treatment_Cost = st.slider("Treatment Cost", 1, 100, 60)
+    total = Treatment_Cost * quantity
     submit = st.form_submit_button()
 
 if submit:
@@ -35,7 +35,7 @@ if submit:
         Patient_address=Patient_address,
         Treatment_type=Treatment_type,
         quantity=quantity,
-        price_per_unit=price_per_unit,
+        Treatment_Cost=Treatment_Cost,
         total=total,
     )
 
