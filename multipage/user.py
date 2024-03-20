@@ -79,7 +79,6 @@ if choice == 'Login':
             if user_type=='user':
                 st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
                 bio = st.radio('Jump to',['Relax','Dashboard','Home','Settings '])
-                st.experimental_rerun()
                 if bio=='Relax':
                     st.write("Relax !!!")
                     components.html('<iframe style="border-radius:20px" src="https://open.spotify.com/embed/playlist/79CdkHFoF0VYvHEzFFXokr?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>', height=400, scrolling=True)
@@ -175,7 +174,7 @@ if choice == 'Login':
 
 
     except:
-        st.sidebar.error('incorrect email and password !')
+        st.sidebar.error('incorrect email and password ')
 
 # st.markdown(
 #     f"""

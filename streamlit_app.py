@@ -40,15 +40,15 @@ def sentiment_scores(sentence):
     st.session_state.neutral_risk_percentage+=sentiment_dict['neu']
     st.session_state.positive_risk_percentage+=sentiment_dict['pos']
     # print(st.session_state.sentiment_dict['compound'])
-    if st.session_state.sentiment_count>2:
-        if sentiment_dict['compound']>=0.05:
-        # if (st.session_state.positive_risk_percentage/5)*100 >=60:
-            st.write(f"Low risk of mental health issues. Keep up the good work!!!{(st.session_state.positive_risk_percentage/5)*100}")
-        elif sentiment_dict['compound']<=-0.05:
-        # elif (st.session_state.negative_risk_percentage/5)*100 >=60:
-            st.write(f"High risk of mental health issues. Please seek professional help immediately.{(st.session_state.negative_risk_percentage/5)*100}")
-        else:
-            st.write(f"Moderate risk of mental health issues. Please seek help if necessary.{(st.session_state.neutral_risk_percentage/5)*100}")
+    # if st.session_state.sentiment_count>2:
+    #     if sentiment_dict['compound']>=0.05:
+    #     # if (st.session_state.positive_risk_percentage/5)*100 >=60:
+    #         st.write(f"You are aw!!!{(st.session_state.positive_risk_percentage/5)*100}")
+    #     elif sentiment_dict['compound']<=-0.05:
+    #     # elif (st.session_state.negative_risk_percentage/5)*100 >=60:
+    #         st.write(f"High risk of mental health issues. Please seek professional help immediately.{(st.session_state.negative_risk_percentage/5)*100}")
+    #     else:
+    #         st.write(f"Moderate risk of mental health issues. Please seek help if necessary.{(st.session_state.neutral_risk_percentage/5)*100}")
 
 def generate_answer():
     tokenizer, model = get_models()
